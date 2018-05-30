@@ -1,13 +1,11 @@
-export const CHANGE_RETURN_DELAY = 500;
-export const ITEM_SELECTION_DELAY = 500;
-export const COIN_INSERT_DELAY = 500;
+export const RESET_DELAY = 1000;
 
 export const denominations = [
-  { label: '10c', value: 0.1 },
-  { label: '20c', value: 0.2 },
-  { label: '50c', value: 0.5 },
-  { label: '$1', value: 1 },
-  { label: '$2', value: 2 }
+  { label: '10c', value: 0.1, className: 'tenCents' },
+  { label: '20c', value: 0.2, className: 'twentyCents' },
+  { label: '50c', value: 0.5, className: 'fiftyCents' },
+  { label: '$1', value: 1, className: 'oneDollar' },
+  { label: '$2', value: 2, className: 'twoDollars' }
 ]; // mocked value that would probably come from an api endpoint
 
 export const items = [
@@ -38,14 +36,16 @@ export const cancelPurchase = state => {
 };
 
 export const resetPurchase = state => {
-  setTimeout(() => {
-    return {
-      ...state,
-      coins: [],
-      change: undefined,
-      selectedItem: undefined
-    };
-  }, 1000); // fake delay to return coins
+  return new Promise(resolve =>
+    setTimeout(() => {
+      resolve({
+        ...state,
+        coins: [],
+        change: undefined,
+        selectedItem: undefined
+      });
+    }, RESET_DELAY)
+  );
 };
 
 export const insertNewCoin = (state, coin) => {
@@ -77,9 +77,4 @@ export const selectItem = (state, item) => {
   }
 
   return state;
-};
-
-export const returnChange = state => {
-  console.info('Returning change ', state.change);
-  return resetPurchase(state);
 };

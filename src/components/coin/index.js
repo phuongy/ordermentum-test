@@ -3,11 +3,13 @@ import './coin.css';
 
 class Coin extends Component {
   render() {
-    const { onClick, label, value } = this.props;
+    const { className, onClick, label, value } = this.props;
     const coin = { label, value };
 
     return (
-      <button className="coin" onClick={() => onClick(coin)}>
+      <button
+        className={`coin ${className ? className : ''}`}
+        onClick={() => onClick(coin)}>
         {label}
       </button>
     );
