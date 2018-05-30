@@ -1,5 +1,3 @@
-export const RESET_DELAY = 1000;
-
 export const denominations = [
   { label: '10c', value: 0.1, className: 'tenCents' },
   { label: '20c', value: 0.2, className: 'twentyCents' },
@@ -36,16 +34,12 @@ export const cancelPurchase = state => {
 };
 
 export const resetPurchase = state => {
-  return new Promise(resolve =>
-    setTimeout(() => {
-      resolve({
-        ...state,
-        coins: [],
-        change: undefined,
-        selectedItem: undefined
-      });
-    }, RESET_DELAY)
-  );
+  return {
+    ...state,
+    coins: [],
+    change: undefined,
+    selectedItem: undefined
+  };
 };
 
 export const insertNewCoin = (state, coin) => {

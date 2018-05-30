@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Machine from './components/machine';
 import './App.css';
-
 import {
   denominations,
   items,
@@ -11,6 +10,8 @@ import {
   resetPurchase,
   selectItem
 } from './actions/machine';
+
+const RESET_DELAY = 1000;
 
 class App extends Component {
   constructor(props) {
@@ -30,14 +31,17 @@ class App extends Component {
   };
 
   cancelPurchase = () => {
-    this.setState(cancelPurchase(this.state), async () => {
-      this.setState(await resetPurchase(this.statestate));
+    this.setState(cancelPurchase(this.state), () => {
+      setTimeout(
+        () => this.setState(resetPurchase(this.statestate)),
+        RESET_DELAY
+      );
     });
   };
 
   selectItem = item => {
-    this.setState(selectItem(this.state, item), async () => {
-      this.setState(await resetPurchase(this.state));
+    this.setState(selectItem(this.state, item), () => {
+      setTimeout(() => this.setState(resetPurchase(this.state)), RESET_DELAY);
     });
   };
 

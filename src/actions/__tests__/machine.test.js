@@ -89,3 +89,32 @@ describe('select item', () => {
     expect(newState.change).toEqual(undefined);
   });
 });
+
+describe('reset purchase', () => {
+  it('cancel purchase', async () => {
+    let newState = insertNewCoin(state, oneDollar);
+    newState = insertNewCoin(newState, twoDollar);
+    newState = insertNewCoin(newState, twoDollar);
+    expect(getCoinValue(newState)).toEqual('5.00');
+    expect(newState.change).toEqual(undefined);
+
+    newState = await cancelPurchase(newState);
+    expect(getCoinValue(newState)).toEqual('0.00');
+    expect(newState.change).toEqual('5.00');
+  });
+  it('select item purchase', async () => {
+    let newState = insertNewCoin(state, oneDollar);
+    newState = insertNewCoin(newState, twoDollar);
+    newState = insertNewCoin(newState, twoDollar);
+    expect(getCoinValue(newState)).toEqual('5.00');
+    expect(newState.change).toEqual(undefined);
+
+    newState = await selectItem(newState, items[0]);
+    expect(getCoinValue(newState)).toEqual('0.00');
+    expect(newState.change).toEqual('2.50');
+
+    newState = await resetPurchase(newState);
+    expect(getCoinValue(newState)).toEqual('0.00');
+    expect(newState.change).toEqual(undefined);
+  });
+});
