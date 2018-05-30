@@ -1,0 +1,123 @@
+.machine {
+  background: #666;
+  height: 300px;
+  margin: 40px auto 0;
+  position: relative;
+  width: 300px;
+}
+
+.machine_denominations {
+  left: 50%;
+  margin-left: -200px;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.cancel {
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 10px;
+  outline: none;
+  padding: 5px 0;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.machine_coinDisplay {
+  background: #000;
+  border: 10px;
+  color: red;
+  font-family: 'VT323', monospace;
+  font-size: 100px;
+  height: 90px;
+  left: 50%;
+  line-height: 40px;
+  position: absolute;
+  text-align: right;
+  top: 40px;
+  transform: translateX(-50%);
+  padding: 25px 10px;
+  width: 230px;
+}
+
+.machine_coinDisplay::before {
+  color: #fff;
+  content: 'Amount';
+  font-family: Arial;
+  font-size: 16px;
+  left: 0;
+  position: absolute;
+  top: -35px;
+}
+
+.machine_items {
+  bottom: 0;
+  display: flex;
+  height: 160px;
+  justify-content: space-between;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+}
+
+.machine_items .item {
+  flex: 1 1 auto;
+  padding: 0 5px;
+}
+
+.machine_changeDrop {
+  background: #000;
+  color: #fff;
+  font-size: 32px;
+  height: 100px;
+  left: 50%;
+  line-height: 100px;
+  margin-left: 170px;
+  position: absolute;
+  text-align: center;
+  width: 100px;
+}
+
+.machine_changeDrop::before {
+  box-sizing: border-box;
+  content: 'Change';
+  font-size: 14px;
+  height: auto;
+  left: 1px;
+  line-height: 1;
+  padding: 0 20px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 100%;
+}
+
+.machine_itemDrop {
+  background: #000;
+  bottom: 0;
+  color: #fff;
+  height: 180px;
+  left: 50%;
+  margin-left: 170px;
+  padding: 40px 10px 0;
+  position: absolute;
+  text-align: center;
+  width: 100px;
+}
+
+.machine_itemDrop::before {
+  box-sizing: border-box;
+  content: 'Item';
+  font-size: 14px;
+  height: auto;
+  left: 1px;
+  line-height: 1;
+  padding: 0 20px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 100%;
+}

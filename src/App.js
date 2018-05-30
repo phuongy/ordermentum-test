@@ -9,6 +9,7 @@ import {
   insertNewCoin,
   cancelPurchase,
   returnChange,
+  resetPurchase,
   selectItem
 } from './actions/machine';
 
@@ -30,12 +31,16 @@ class App extends Component {
   };
 
   cancelPurchase = () => {
-    this.setState(cancelPurchase(this.state));
+    this.setState(cancelPurchase(this.state), () => {
+      this.setState(resetPurchase(this.state));
+    });
   };
 
   selectItem = item => {
     this.setState(selectItem(this.state, item), () => {
-      this.setState(returnChange(this.state));
+      this.setState(returnChange(this.state), () => {
+        this.setState(resetPurchase(this.state));
+      });
     });
   };
 

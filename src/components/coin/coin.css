@@ -1,0 +1,17 @@
+.coin {
+  background: #ccc;
+  border: 2px solid #aaa;
+  border-radius: 50%;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  height: 55px;
+  margin-bottom: 10px;
+  outline: none;
+  width: 55px;
+}
+
+.coin:hover {
+  background: #888;
+  border-color: #666;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Item from '../item';
 import Coin from '../coin';
+import './machine.css';
 
 class Machine extends Component {
   render() {
@@ -14,10 +15,14 @@ class Machine extends Component {
       insertNewCoin,
       cancelPurchase
     } = this.props;
+    console.log(this.props);
     const coinValue = getCoinValue();
 
     return (
       <div className="machine">
+        <button className="cancel" onClick={() => cancelPurchase()}>
+          Cancel
+        </button>
         <div className="machine_denominations">
           {denominations.map((d, index) => (
             <Coin
@@ -27,11 +32,8 @@ class Machine extends Component {
               value={d.value}
             />
           ))}
-          <button onClick={() => cancelPurchase()}>Cancel</button>
         </div>
-        <div className="machine_coinDisplay">
-          {change !== undefined ? change : coinValue}
-        </div>
+        <div className="machine_coinDisplay">{coinValue}</div>
         <div className="machine_items">
           {items.map((item, index) => (
             <Item
@@ -42,6 +44,12 @@ class Machine extends Component {
               value={item.value}
             />
           ))}
+        </div>
+        <div className="machine_changeDrop">
+          {change !== undefined ? `${change}` : '-'}
+        </div>
+        <div className="machine_itemDrop">
+          {selectedItem !== undefined ? selectedItem.label : '-'}
         </div>
       </div>
     );

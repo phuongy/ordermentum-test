@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './coin.css';
 
 class Coin extends Component {
   render() {
@@ -6,7 +7,7 @@ class Coin extends Component {
     const coin = { label, value };
 
     return (
-      <button className="denomination" onClick={() => onClick(coin)}>
+      <button className="coin" onClick={() => onClick(coin)}>
         {label}
       </button>
     );

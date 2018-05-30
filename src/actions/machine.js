@@ -27,8 +27,14 @@ export const getCoinValue = state => {
 };
 
 export const cancelPurchase = state => {
-  console.log('purchase cancelled 1');
-  return resetPurchase(state);
+  const change = getCoinValue(state);
+
+  return {
+    ...state,
+    coins: [],
+    change,
+    selectedItem: undefined
+  };
 };
 
 export const resetPurchase = state => {
@@ -43,7 +49,7 @@ export const resetPurchase = state => {
 };
 
 export const insertNewCoin = (state, coin) => {
-  if (denominations.filter(d => d.value === coin.value)) {
+  if (denominations.filter(d => d.value === coin.value).length > 0) {
     return {
       ...state,
       coins: [...state.coins, coin]
@@ -59,17 +65,13 @@ export const selectItem = (state, item) => {
   const coinValue = parseFloat(getCoinValue(state));
   const itemValue = item.value;
 
-  if (coinValue < itemValue) {
-    console.error('Please insert more coins to purchase this item.');
-  }
-
   if (coinValue >= itemValue) {
     const change = (coinValue - itemValue).toFixed(2);
-    console.log(`Purchase successful, return change - ${change}`);
 
     return {
       ...state,
       selectedItem: item,
+      coins: [],
       change
     };
   }
@@ -78,5 +80,6 @@ export const selectItem = (state, item) => {
 };
 
 export const returnChange = state => {
+  console.info('Returning change ', state.change);
   return resetPurchase(state);
 };

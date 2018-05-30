@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './item.css';
 
 class Item extends Component {
   render() {
@@ -8,7 +9,8 @@ class Item extends Component {
     return (
       <div className="item">
         <button onClick={() => onClick(item)} disabled={disabled}>
-          {label} - ${value}
+          <div className="item_label">{label}</div>
+          <div className="item_value">${value.toFixed(2)}</div>
         </button>
       </div>
     );
